@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env.local.db
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
