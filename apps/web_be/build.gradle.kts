@@ -7,6 +7,10 @@ bootJar.enabled = false
 jar.enabled = true
 
 dependencies {
-    implementation(":common")
-    implementation(":web_core")
+    implementation(project(":common"))
+    implementation(project(":web_core"))
+
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 }
