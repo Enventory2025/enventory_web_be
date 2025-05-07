@@ -2,6 +2,7 @@ dependencies {
     implementation(project(":common"))
 
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
 
     // kotlin logging
     implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
