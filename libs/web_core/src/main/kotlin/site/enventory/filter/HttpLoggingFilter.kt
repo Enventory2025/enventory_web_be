@@ -6,6 +6,8 @@ import org.springframework.web.server.ServerWebExchange
 import org.springframework.web.server.WebFilter
 import org.springframework.web.server.WebFilterChain
 import reactor.core.publisher.Mono
+import site.enventory.constant.ColorCode.*
+import java.util.UUID.randomUUID
 
 @Component
 class HttpLoggingFilter: WebFilter {
@@ -14,9 +16,13 @@ class HttpLoggingFilter: WebFilter {
 
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
         val request = exchange.request
-        logger.debug { "[REQ][${request.path}] 요청 수신" }
+        val response = exchange.response
+
+        val requestId = randomUUID().toString().substring(0, 8)
+        logger.debug { "${GREEN.code}[REQ]${PURPLE.code}[${requestId}]${RESET.code} ${request.method} ${request.path}" }
+
         val now = System.currentTimeMillis()
         return chain.filter(exchange)
-            .doOnSuccess { logger.debug { "[RES] 응답 완료 +${System.currentTimeMillis() - now}ms"} }
+            .doOnSuccess { logger.debug { "${AQUA.code}[RES]${PURPLE.code}[${requestId}]${RESET.code} ${request.method} ${request.path} ${response.statusCode} ${AQUA.code}+${System.currentTimeMillis() - now}ms" } }
     }
 }
