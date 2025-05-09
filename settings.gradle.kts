@@ -14,3 +14,10 @@ listOf(
     include(it)
     project(":$it").projectDir = File("$rootDir/apps/$it")
 }
+
+listOf(
+    "postgres",
+).forEach {
+    include(it)
+    project(":$it").projectDir = File("$rootDir/libs/infra/$it")
+}
