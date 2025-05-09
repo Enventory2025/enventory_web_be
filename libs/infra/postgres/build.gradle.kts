@@ -9,8 +9,8 @@ jar.enabled = true
 dependencies {
     implementation(project(":common"))
 
-    // spring data r2dbc
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-    implementation("io.r2dbc:r2dbc-postgresql")
+    implementation("io.r2dbc:r2dbc-postgresql:0.8.13.RELEASE")
     implementation("io.r2dbc:r2dbc-pool")
+    implementation("io.r2dbc:r2dbc-spi")
 }
