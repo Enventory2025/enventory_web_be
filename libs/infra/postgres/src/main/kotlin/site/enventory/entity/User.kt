@@ -22,4 +22,3 @@ data class UserEntity(
     @CreatedDate @Column("created_at") val createdAt: Instant? = null,
     @LastModifiedDate @Column("updated_at") val updatedAt: Instant? = null,
 )
-
