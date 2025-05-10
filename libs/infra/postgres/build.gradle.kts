@@ -14,6 +14,4 @@ dependencies {
     implementation("io.r2dbc:r2dbc-pool")
     implementation("io.r2dbc:r2dbc-spi")
     implementation("io.r2dbc:r2dbc-proxy")
-
-    implementation("com.github.f4b6a3:uuid-creator:6.1.1")
 }

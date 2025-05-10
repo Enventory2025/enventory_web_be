@@ -7,10 +7,11 @@ import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import site.enventory.constant.Provider
 import java.time.Instant
+import java.util.UUID
 
 @Table("users")
 data class UserEntity(
-    @Id val id: Long? = null,
+    @Id val id: UUID? = null,
 
     val email: String,
 

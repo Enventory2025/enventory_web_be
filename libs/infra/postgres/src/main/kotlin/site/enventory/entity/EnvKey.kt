@@ -1,6 +1,5 @@
 package site.enventory.entity
 
-import com.github.f4b6a3.uuid.UuidCreator
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
@@ -11,7 +10,7 @@ import java.util.UUID
 
 @Table("env_keys")
 data class EnvKeyEntity(
-    @Id val id: UUID = UuidCreator.getTimeOrdered(),
+    @Id val id: UUID? = null,
 
     @Column("env_store_id") val envStoreId: UUID,
 

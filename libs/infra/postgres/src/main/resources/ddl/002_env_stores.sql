@@ -1,5 +1,5 @@
 CREATE TABLE env_stores (
-    id UUID PRIMARY KEY,
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL,
     name VARCHAR(30) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL,

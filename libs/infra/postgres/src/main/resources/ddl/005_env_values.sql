@@ -1,5 +1,5 @@
 CREATE TABLE env_values (
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     env_key_id UUID NOT NULL,
     environment_id UUID NOT NULL,
     value TEXT NOT NULL,
