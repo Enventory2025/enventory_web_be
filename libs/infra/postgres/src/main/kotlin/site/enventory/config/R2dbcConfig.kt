@@ -14,6 +14,7 @@ import io.r2dbc.proxy.listener.ProxyExecutionListener
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.r2dbc.config.EnableR2dbcAuditing
+import site.enventory.constant.ColorCode.*
 
 @Configuration
 @EnableR2dbcAuditing
@@ -53,7 +54,7 @@ class R2dbcConfig(
                 executionInfo.queries.forEach { queryInfo ->
                     val query = queryInfo.query
                     val params = queryInfo.bindingsList
-                    println("✅ Query executed in $duration ms: $query")
+                    println("✅ Query executed in ${AQUA.code}${duration}ms${RESET.code}. Query: ${YELLOW.code}$query${RESET.code}")
                     params.forEach { param ->
                         param.namedBindings.forEach { namedBinding ->
                             println("   🪢 Named Binding: ${namedBinding.key} = ${namedBinding.boundValue.value}")
