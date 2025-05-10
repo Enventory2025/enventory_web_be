@@ -1,4 +1,4 @@
-CREATE TYPE auth_provider AS ENUM ('GOOGLE', 'KAKAO');
+CREATE TYPE auth_provider AS ENUM ('GOOGLE', 'GITHUB');
 
 CREATE TABLE users (
    id UUID PRIMARY KEY,
