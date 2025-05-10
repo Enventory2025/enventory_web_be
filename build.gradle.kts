@@ -41,6 +41,8 @@ subprojects {
         developmentOnly("org.springframework.boot:spring-boot-devtools")
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
+        runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.100.Final:osx-aarch_64")
+
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
