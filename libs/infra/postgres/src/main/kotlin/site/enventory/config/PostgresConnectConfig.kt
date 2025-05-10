@@ -13,6 +13,10 @@ import io.r2dbc.proxy.core.QueryExecutionInfo
 import io.r2dbc.proxy.listener.ProxyExecutionListener
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.convert.CustomConversions
+import org.springframework.data.r2dbc.convert.R2dbcCustomConversions
+import site.enventory.converter.ProviderReadingConverter
+import site.enventory.converter.ProviderWritingConverter
 
 @Configuration
 class PostgresConnectConfig(
@@ -63,5 +67,14 @@ class PostgresConnectConfig(
                 .maxSize(20)
                 .build()
         )
+    }
+
+    @Bean
+    fun r2dbcCustomConversions(): R2dbcCustomConversions {
+        val converters = listOf(
+            ProviderWritingConverter(),
+            ProviderReadingConverter()
+        )
+        return R2dbcCustomConversions(CustomConversions.StoreConversions.NONE, converters)
     }
 }
