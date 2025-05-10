@@ -13,9 +13,11 @@ import io.r2dbc.proxy.core.QueryExecutionInfo
 import io.r2dbc.proxy.listener.ProxyExecutionListener
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.r2dbc.config.EnableR2dbcAuditing
 
 @Configuration
-class PostgresConnectConfig(
+@EnableR2dbcAuditing
+class R2dbcConfig(
     private val dotenv: Dotenv
 ) {
 
