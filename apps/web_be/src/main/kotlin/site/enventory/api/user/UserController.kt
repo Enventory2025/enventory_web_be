@@ -1,6 +1,7 @@
 package site.enventory.api.user
 
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -12,8 +13,9 @@ import site.enventory.constant.Uri
 import site.enventory.entity.UserEntity
 
 @RestController
-@RequestMapping(Uri.V1 + Uri.USERS)
+@RequestMapping(Uri.USERS + Uri.V1)
 @WrapResponse
+@Tag(name = "User APIs", description = "유저 API")
 class UserController(
     private val userService: UserService
 ) {

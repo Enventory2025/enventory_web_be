@@ -15,6 +15,8 @@ object Uri {
     const val USERS = "/users"
     const val INFO = "/info"
 
+    const val ENV_STORES = "/env-stores"
+
     val GET_WHITELIST = listOf(
         HEALTH,
         API_DOCS,
