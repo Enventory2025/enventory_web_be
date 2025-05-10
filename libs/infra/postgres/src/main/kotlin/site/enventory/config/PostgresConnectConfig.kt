@@ -13,15 +13,13 @@ import io.r2dbc.proxy.core.QueryExecutionInfo
 import io.r2dbc.proxy.listener.ProxyExecutionListener
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.data.convert.CustomConversions
-import org.springframework.data.r2dbc.convert.R2dbcCustomConversions
-import site.enventory.converter.ProviderReadingConverter
-import site.enventory.converter.ProviderWritingConverter
 
 @Configuration
 class PostgresConnectConfig(
     private val dotenv: Dotenv
 ) {
+
+    private val serverEnv = dotenv["SERVER_ENV"]
 
     private val driver = "postgresql"
     private val host = dotenv["DB_HOST"]
@@ -46,13 +44,23 @@ class PostgresConnectConfig(
 
         // 쿼리 로그 출력용 리스너 설정
         val listener = object : ProxyExecutionListener {
-            override fun beforeQuery(executionInfo: QueryExecutionInfo) {
-                println("➡️ Executing Query: ${executionInfo.queries}")
-            }
-
             override fun afterQuery(executionInfo: QueryExecutionInfo) {
+                if (serverEnv == "production") return
+
                 val duration = executionInfo.executeDuration.toMillis()
-                println("✅ Finished Query: ${executionInfo.queries} (Time: ${duration}ms)")
+                executionInfo.queries.forEach { queryInfo ->
+                    val query = queryInfo.query
+                    val params = queryInfo.bindingsList
+                    println("✅ Query executed in $duration ms: $query")
+                    params.forEach { param ->
+                        param.namedBindings.forEach { namedBinding ->
+                            println("   🪢 Named Binding: ${namedBinding.key} = ${namedBinding.boundValue.value}")
+                        }
+                        param.indexBindings.forEach { indexBindings ->
+                            println("   🪢 Index Binding: ${indexBindings.key} = ${indexBindings.boundValue.value}")
+                        }
+                    }
+                }
             }
         }
 
@@ -67,14 +75,5 @@ class PostgresConnectConfig(
                 .maxSize(20)
                 .build()
         )
-    }
-
-    @Bean
-    fun r2dbcCustomConversions(): R2dbcCustomConversions {
-        val converters = listOf(
-            ProviderWritingConverter(),
-            ProviderReadingConverter()
-        )
-        return R2dbcCustomConversions(CustomConversions.StoreConversions.NONE, converters)
     }
 }
