@@ -28,7 +28,7 @@ data class UserResponseDto(
                 id = user.id ?: throw ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "유저 ID가 존재하지 않습니다."),
                 email = user.email,
                 provider = user.provider,
-                createdAt = user.createdAt ?: throw ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "유저 생성 날짜가 존재하지 않습니다."),
+                createdAt = user.createdAt,
             )
         }
     }

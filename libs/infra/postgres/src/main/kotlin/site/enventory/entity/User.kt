@@ -19,6 +19,6 @@ data class UserEntity(
 
     @Column("provider_id") val providerId: String,
 
-    @CreatedDate @Column("created_at") val createdAt: Instant? = null,
-    @LastModifiedDate @Column("updated_at") val updatedAt: Instant? = null,
+    @CreatedDate @Column("created_at") val createdAt: Instant = Instant.now(),
+    @LastModifiedDate @Column("updated_at") val updatedAt: Instant = Instant.now(),
 )
