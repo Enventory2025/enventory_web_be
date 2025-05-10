@@ -8,9 +8,11 @@ jar.enabled = true
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":redis"))
 
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
     // kotlin logging
     implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
