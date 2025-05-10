@@ -18,15 +18,15 @@ import java.util.UUID
 @Target(AnnotationTarget.VALUE_PARAMETER)
 @Retention(AnnotationRetention.RUNTIME)
 @Schema(hidden = true)
-annotation class LoginMember
+annotation class LoginUser
 
 @Component
-class LoginMemberArgumentResolver(
+class LoginUserArgumentResolver(
     private val userRepository: UserRepository
 ) : HandlerMethodArgumentResolver {
 
     override fun supportsParameter(parameter: MethodParameter): Boolean {
-        return parameter.hasParameterAnnotation(LoginMember::class.java)
+        return parameter.hasParameterAnnotation(LoginUser::class.java)
     }
 
     override fun resolveArgument(
@@ -43,7 +43,7 @@ class LoginMemberArgumentResolver(
                         .switchIfEmpty(Mono.error(ResponseStatusException(HttpStatus.FORBIDDEN, "인증 정보가 유효하지 않습니다.")))
                 }
         } else {
-            throw ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "@LoginMember 어노테이션은 UserEntity 타입의 파라미터에만 사용 가능합니다.")
+            throw ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "@LoginUser 어노테이션은 UserEntity 타입의 파라미터에만 사용 가능합니다.")
         }
     }
 }
