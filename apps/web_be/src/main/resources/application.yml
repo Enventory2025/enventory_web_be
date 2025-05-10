@@ -3,3 +3,9 @@ spring:
     import:
       - classpath:application-common.yml
       - classpath:application-web_core.yml
+
+springdoc:
+  swagger-ui:
+    path: /api-docs
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
