@@ -2,6 +2,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":web_core"))
     implementation(project(":postgres"))
+    implementation(project(":redis"))
 
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")

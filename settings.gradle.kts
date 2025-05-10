@@ -17,6 +17,7 @@ listOf(
 
 listOf(
     "postgres",
+    "redis",
 ).forEach {
     include(it)
     project(":$it").projectDir = File("$rootDir/libs/infra/$it")
