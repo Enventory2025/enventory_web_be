@@ -6,13 +6,11 @@ import io.r2dbc.pool.ConnectionPoolConfiguration
 import io.r2dbc.spi.ConnectionFactories
 import io.r2dbc.spi.ConnectionFactory
 import io.r2dbc.spi.ConnectionFactoryOptions
-import io.r2dbc.spi.ConnectionFactoryOptions.DATABASE
-import io.r2dbc.spi.ConnectionFactoryOptions.DRIVER
-import io.r2dbc.spi.ConnectionFactoryOptions.HOST
-import io.r2dbc.spi.ConnectionFactoryOptions.PASSWORD
-import io.r2dbc.spi.ConnectionFactoryOptions.PORT
-import io.r2dbc.spi.ConnectionFactoryOptions.USER
+import io.r2dbc.spi.ConnectionFactoryOptions.*
 import io.r2dbc.spi.Option
+import io.r2dbc.proxy.ProxyConnectionFactory
+import io.r2dbc.proxy.core.QueryExecutionInfo
+import io.r2dbc.proxy.listener.ProxyExecutionListener
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -42,11 +40,28 @@ class PostgresConnectConfig(
 
         val delegate: ConnectionFactory = ConnectionFactories.get(options)
 
+        // 쿼리 로그 출력용 리스너 설정
+        val listener = object : ProxyExecutionListener {
+            override fun beforeQuery(executionInfo: QueryExecutionInfo) {
+                println("➡️ Executing Query: ${executionInfo.queries}")
+            }
+
+            override fun afterQuery(executionInfo: QueryExecutionInfo) {
+                val duration = executionInfo.executeDuration.toMillis()
+                println("✅ Finished Query: ${executionInfo.queries} (Time: ${duration}ms)")
+            }
+        }
+
+
+        val proxyConnectionFactory = ProxyConnectionFactory.builder(delegate)
+            .listener(listener)
+            .build()
+
         return ConnectionPool(
-            ConnectionPoolConfiguration.builder(delegate)
+            ConnectionPoolConfiguration.builder(proxyConnectionFactory)
                 .initialSize(5)
                 .maxSize(20)
                 .build()
-        );
+        )
     }
 }
