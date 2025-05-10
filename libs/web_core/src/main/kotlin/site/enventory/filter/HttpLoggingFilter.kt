@@ -12,7 +12,7 @@ import java.util.UUID.randomUUID
 @Component
 class HttpLoggingFilter: WebFilter {
 
-    val logger = KotlinLogging.logger {}
+    private val logger = KotlinLogging.logger {}
 
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
         val request = exchange.request
