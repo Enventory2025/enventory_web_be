@@ -18,7 +18,7 @@ class ResponseWrappingAspect {
 
         return when (result) {
             is Mono<*> -> result.map { wrapIfNeeded(it) }
-            is Flux<*> -> result.collectList().map { wrapIfNeeded(it) }
+            is Flux<*> -> result.collectList().map { wrapIfNeeded(it) }.flux()
             else -> wrapIfNeeded(result)
         }
     }

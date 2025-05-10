@@ -23,7 +23,7 @@ annotation class LoginUser
 @Component
 class LoginUserArgumentResolver(
     private val userRepository: UserRepository
-) : HandlerMethodArgumentResolver {
+): HandlerMethodArgumentResolver {
 
     override fun supportsParameter(parameter: MethodParameter): Boolean {
         return parameter.hasParameterAnnotation(LoginUser::class.java)
