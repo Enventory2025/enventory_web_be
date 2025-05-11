@@ -10,7 +10,7 @@ dependencies {
     implementation(project(":common"))
 
     api("org.springframework.boot:spring-boot-starter-data-r2dbc")
-    api("io.r2dbc:r2dbc-postgresql:0.8.10.RELEASE")
+    api("org.postgresql:r2dbc-postgresql:1.0.7.RELEASE")
     api("io.r2dbc:r2dbc-pool")
     api("io.r2dbc:r2dbc-spi")
     api("io.r2dbc:r2dbc-proxy")

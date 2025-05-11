@@ -14,6 +14,7 @@ import io.r2dbc.proxy.listener.ProxyExecutionListener
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.r2dbc.config.EnableR2dbcAuditing
+import org.springframework.r2dbc.connection.R2dbcTransactionManager
 import site.enventory.constant.ColorCode.*
 
 @Configuration
@@ -78,5 +79,10 @@ class R2dbcConfig(
                 .maxSize(20)
                 .build()
         )
+    }
+
+    @Bean
+    fun r2dbcTransactionManager(connectionFactory: ConnectionFactory): R2dbcTransactionManager {
+        return R2dbcTransactionManager(connectionFactory)
     }
 }

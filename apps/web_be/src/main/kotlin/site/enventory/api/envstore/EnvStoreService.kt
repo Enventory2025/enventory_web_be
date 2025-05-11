@@ -1,6 +1,7 @@
 package site.enventory.api.envstore
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import site.enventory.adapter.EnvStoreAdapter
@@ -21,6 +22,7 @@ class EnvStoreService(
             .map { EnvStoreResponseDto.of(it) }
     }
 
+    @Transactional
     fun create(
         loginUser: UserEntity,
         requestDto: CreateEnvStoreRequestDto
