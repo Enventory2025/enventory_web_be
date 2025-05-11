@@ -9,9 +9,9 @@ jar.enabled = true
 dependencies {
     implementation(project(":common"))
 
-    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-    implementation("io.r2dbc:r2dbc-postgresql:0.8.13.RELEASE")
-    implementation("io.r2dbc:r2dbc-pool")
-    implementation("io.r2dbc:r2dbc-spi")
-    implementation("io.r2dbc:r2dbc-proxy")
+    api("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    api("io.r2dbc:r2dbc-postgresql:0.8.10.RELEASE")
+    api("io.r2dbc:r2dbc-pool")
+    api("io.r2dbc:r2dbc-spi")
+    api("io.r2dbc:r2dbc-proxy")
 }

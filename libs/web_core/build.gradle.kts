@@ -11,18 +11,18 @@ dependencies {
     implementation(project(":postgres"))
     implementation(project(":redis"))
 
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-aop")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    api("org.springframework.boot:spring-boot-starter-webflux")
+    api("org.springframework.boot:spring-boot-starter-aop")
+    api("org.springframework.boot:spring-boot-starter-security")
+    api("org.springframework.boot:spring-boot-starter-validation")
 
     // kotlin logging
-    implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
+    api("io.github.oshai:kotlin-logging-jvm:5.1.0")
 
     // jwt
     implementation("io.jsonwebtoken:jjwt-api:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.6.0")
+    api("org.springdoc:springdoc-openapi-starter-webflux-ui:2.6.0")
 }

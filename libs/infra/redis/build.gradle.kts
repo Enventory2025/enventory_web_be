@@ -9,7 +9,7 @@ jar.enabled = true
 dependencies {
     implementation(project(":common"))
 
-    implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+    api("org.springframework.boot:spring-boot-starter-data-redis-reactive")
 
     implementation("org.springframework.boot:spring-boot-starter-json")
 }
