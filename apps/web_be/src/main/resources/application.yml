@@ -3,6 +3,8 @@ spring:
     import:
       - classpath:application-common.yml
       - classpath:application-web_core.yml
+      - classpath:application-postgres.yml
+      - classpath:application-redis.yml
 
 springdoc:
   swagger-ui:
